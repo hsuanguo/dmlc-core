@@ -211,7 +211,10 @@ else()
   if(SUPPORT_MSSE2)
     target_compile_options(dmlc PRIVATE -msse2)
   endif()
-  target_compile_options(dmlc PRIVATE -Wall -Wno-unknown-pragmas -fPIC)
+
+  # add_definitions(-mno-outline-atomics)
+
+  target_compile_options(dmlc PRIVATE -Wall -Wno-unknown-pragmas (-mno-outline-atomics -fPIC)
   if(CMAKE_BUILD_TYPE STREQUAL "DEBUG" OR CMAKE_BUILD_TYPE STREQUAL "Debug")
     target_compile_options(dmlc PRIVATE -g -O0)
   else()
